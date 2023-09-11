@@ -4,6 +4,7 @@ import com.nisum.users.aplication.services.UserService;
 import com.nisum.users.infrastructure.api.dto.UserCreateDTO;
 import com.nisum.users.infrastructure.api.dto.UserCreatedDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,6 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<UserCreatedDTO> createUser(@RequestBody UserCreateDTO user) {
-        return ResponseEntity.ok(service.createUser(user));
+        return new ResponseEntity<>(service.createUser(user), HttpStatus.CREATED);
     }
 }
