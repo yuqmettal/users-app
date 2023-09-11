@@ -2,6 +2,7 @@ package com.nisum.users.infrastructure.api.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import java.util.List;
 
@@ -11,6 +12,8 @@ public class UserCreateDTO {
     private String name;
     private String email;
     private String password;
+    @NonNull
+    private String token;
     private List<PhoneCreateDTO> phones;
 
     @Data

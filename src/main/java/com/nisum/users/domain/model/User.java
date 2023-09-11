@@ -23,6 +23,7 @@ public class User {
     private String email;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+    private String token;
     @Column(name = "created_at")
     private Timestamp createdAt;
     @Column(name = "last_modified")

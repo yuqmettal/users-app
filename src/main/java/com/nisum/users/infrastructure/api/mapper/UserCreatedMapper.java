@@ -11,6 +11,5 @@ public interface UserCreatedMapper {
     @Mapping(target = "modified", source = "lastModified")
     @Mapping(target = "last_login", source = "lastLogin")
     @Mapping(target = "isactive", source = "active")
-    @Mapping(target = "token", ignore = true)
     UserCreatedDTO domainToDto(User user);
 }

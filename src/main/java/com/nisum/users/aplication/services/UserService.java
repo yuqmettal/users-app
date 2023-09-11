@@ -17,10 +17,13 @@ public class UserService {
     private UserCreateMapper userCreateMapper;
     @Autowired
     private UserCreatedMapper userCreatedMapper;
+    @Autowired
+    private JWTService jwtService;
 
     public UserCreatedDTO createUser(UserCreateDTO userDTO) {
         User userToCreate = userCreateMapper.dtoToDomain(userDTO);
         userToCreate.getUsersPhones().forEach(phone -> phone.setUser(userToCreate));
+        userToCreate.setToken(jwtService.createToken(userDTO.getEmail()));
         User createdUser = userRepository.save(userToCreate);
         return userCreatedMapper.domainToDto(createdUser);
     }

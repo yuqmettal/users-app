@@ -10,12 +10,13 @@ import org.mapstruct.Mapping;
 public interface UserCreateMapper {
 
     String TIMESTAMP_EXPRESSION = "java(java.sql.Timestamp.from(java.time.Instant.now()))";
+    String UUID_EXPRESSION = "java(java.util.UUID.randomUUID())";
 
     @Mapping(target = "createdAt", expression = TIMESTAMP_EXPRESSION)
     @Mapping(target = "lastModified", expression = TIMESTAMP_EXPRESSION)
     @Mapping(target = "active", constant = "true")
     @Mapping(target = "lastLogin", expression = TIMESTAMP_EXPRESSION)
-    @Mapping(target = "id", expression = "java(java.util.UUID.randomUUID())")
+    @Mapping(target = "id", expression = UUID_EXPRESSION)
     @Mapping(target = "usersPhones", source = "phones")
     User dtoToDomain(UserCreateDTO dto);
 
