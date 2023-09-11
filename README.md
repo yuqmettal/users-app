@@ -74,3 +74,8 @@ gradle test
 - `src/main/resources`: Configuration and other static files.
 
 
+## Application diagram
+
+![](/Users/yuqui/nisum/users/users-app.png)
+
+
