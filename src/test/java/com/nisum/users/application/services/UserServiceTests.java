@@ -56,7 +56,7 @@ public class UserServiceTests {
 
         UserCreatedDTO result = userService.createUser(userDTO);
 
-        assertTrue(result instanceof UserCreatedDTO);
+        assertNotNull(result);
         assertEquals(result.getToken(), user.getToken());
         assertEquals(result.getCreated(), user.getCreatedAt());
     }
@@ -66,9 +66,7 @@ public class UserServiceTests {
         UserCreateDTO userDTO = UserTestFactory.createUserDTO();
         userDTO.setEmail("invalid email");
 
-        assertThrows(InvalidEmailFormatException.class, () -> {
-            userService.createUser(userDTO);
-        });
+        assertThrows(InvalidEmailFormatException.class, () -> userService.createUser(userDTO));
     }
 
     @Test
@@ -76,9 +74,7 @@ public class UserServiceTests {
         UserCreateDTO userDTO = UserTestFactory.createUserDTO();
         userDTO.setPassword("invalid password");
 
-        assertThrows(InvalidPasswordFormatException.class, () -> {
-            userService.createUser(userDTO);
-        });
+        assertThrows(InvalidPasswordFormatException.class, () -> userService.createUser(userDTO));
     }
 
     @Test
@@ -87,8 +83,6 @@ public class UserServiceTests {
 
         when(userRepository.existsByEmail(userDTO.getEmail())).thenReturn(true);
 
-        assertThrows(EmailAlreadyExistsException.class, () -> {
-            userService.createUser(userDTO);
-        });
+        assertThrows(EmailAlreadyExistsException.class, () -> userService.createUser(userDTO));
     }
 }

@@ -69,8 +69,6 @@ gradle test
 
 ## Project Structure
 
-A brief overview of how your project is organized:
-
 - `src/main/java`: Application source code.
 - `src/test/java`: Test cases for the application.
 - `src/main/resources`: Configuration and other static files.

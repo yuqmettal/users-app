@@ -22,21 +22,21 @@ public class GlobalExceptionHandler {
     private String invalidPasswordFormat;
 
     @ExceptionHandler(EmailAlreadyExistsException.class)
-    public ResponseEntity<ErrorDTO> handleEmailAlreadyExistsException(EmailAlreadyExistsException e) {
+    public ResponseEntity<ErrorDTO> handleEmailAlreadyExistsException() {
         ErrorDTO error = new ErrorDTO();
         error.setMensaje(emailAlreadyExists);
         return new ResponseEntity<>(error, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
     @ExceptionHandler(InvalidEmailFormatException.class)
-    public ResponseEntity<ErrorDTO> handleInvalidEmailFormatException(InvalidEmailFormatException e) {
+    public ResponseEntity<ErrorDTO> handleInvalidEmailFormatException() {
         ErrorDTO error = new ErrorDTO();
         error.setMensaje(invalidEmailFormat);
         return new ResponseEntity<>(error, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
     @ExceptionHandler(InvalidPasswordFormatException.class)
-    public ResponseEntity<ErrorDTO> handleInvalidPasswordFormatException(InvalidPasswordFormatException e) {
+    public ResponseEntity<ErrorDTO> handleInvalidPasswordFormatException() {
         ErrorDTO error = new ErrorDTO();
         error.setMensaje(invalidPasswordFormat);
         return new ResponseEntity<>(error, HttpStatus.UNPROCESSABLE_ENTITY);
