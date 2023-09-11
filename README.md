@@ -76,6 +76,6 @@ gradle test
 
 ## Application diagram
 
-![](/Users/yuqui/nisum/users/users-app.png)
+![](users-app.png)
 
 
