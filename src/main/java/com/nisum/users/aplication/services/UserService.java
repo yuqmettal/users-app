@@ -1,5 +1,6 @@
 package com.nisum.users.aplication.services;
 
+import com.nisum.users.domain.exceptions.EmailAlreadyExistsException;
 import com.nisum.users.domain.model.User;
 import com.nisum.users.infrastructure.api.dto.UserCreateDTO;
 import com.nisum.users.infrastructure.api.dto.UserCreatedDTO;
@@ -21,6 +22,10 @@ public class UserService {
     private JWTService jwtService;
 
     public UserCreatedDTO createUser(UserCreateDTO userDTO) {
+        if (userRepository.existsByEmail(userDTO.getEmail())) {
+            throw new EmailAlreadyExistsException(userDTO.getEmail());
+        }
+
         User userToCreate = userCreateMapper.dtoToDomain(userDTO);
         userToCreate.getUsersPhones().forEach(phone -> phone.setUser(userToCreate));
         userToCreate.setToken(jwtService.createToken(userDTO.getEmail()));
