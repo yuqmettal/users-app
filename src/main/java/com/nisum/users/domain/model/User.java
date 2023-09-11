@@ -6,7 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,20 +15,23 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "USERS")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String name;
     private String email;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
-    private Date created;
-    private Date modified;
-    private Date lastLogin;
-    private String token;
+    @Column(name = "created_at")
+    private Timestamp createdAt;
+    @Column(name = "last_modified")
+    private Timestamp lastModified;
+    @Column(name = "last_login")
+    private Timestamp lastLogin;
+    @Column(name = "is_active")
     private boolean isActive;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Phone> phones;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+    private List<UsersPhones> usersPhones = new ArrayList<>();
 }
 

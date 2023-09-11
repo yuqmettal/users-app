@@ -1,7 +1,8 @@
-package com.nisum.users.infrastructure.controller;
+package com.nisum.users.infrastructure.api.controller;
 
 import com.nisum.users.aplication.services.UserService;
-import com.nisum.users.domain.model.User;
+import com.nisum.users.infrastructure.api.dto.UserCreateDTO;
+import com.nisum.users.infrastructure.api.dto.UserCreatedDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,8 +17,7 @@ public class UserController {
     private UserService service;
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        // Validaciones, creación, etc.
+    public ResponseEntity<UserCreatedDTO> createUser(@RequestBody UserCreateDTO user) {
         return ResponseEntity.ok(service.createUser(user));
     }
 }
