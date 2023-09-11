@@ -31,7 +31,7 @@ public class UserService {
     private String PASSWORD_REGEX;
 
     public UserCreatedDTO createUser(UserCreateDTO userDTO) {
-        validate_input_data(userDTO);
+        validateInputData(userDTO);
 
         User userToCreate = userCreateMapper.dtoToDomain(userDTO);
         userToCreate.getUsersPhones().forEach(phone -> phone.setUser(userToCreate));
@@ -40,7 +40,7 @@ public class UserService {
         return userCreatedMapper.domainToDto(createdUser);
     }
 
-    private void validate_input_data(UserCreateDTO userDTO) {
+    private void validateInputData(UserCreateDTO userDTO) {
         if (!userDTO.getEmail().matches(EMAIL_REGEX)) {
             throw new InvalidEmailFormatException();
         }

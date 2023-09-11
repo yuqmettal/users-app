@@ -1,5 +1,6 @@
 package com.nisum.users.infrastructure.api.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -8,6 +9,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserCreateDTO {
     private String name;
     private String email;
@@ -18,6 +20,7 @@ public class UserCreateDTO {
 
     @Data
     @NoArgsConstructor
+    @AllArgsConstructor
     public static class PhoneCreateDTO {
         private String number;
         // TODO: change citycode and to contrycode camel case
